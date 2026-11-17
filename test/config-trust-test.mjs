@@ -47,8 +47,16 @@ await check('a same-origin navigation carries no Origin and must be admitted', a
   assert.equal(trust()(request({ 'sec-fetch-site': 'same-origin' })), true)
 })
 
-await check('a same-site request without Origin is admitted', async () => {
-  assert.equal(trust()(request({ 'sec-fetch-site': 'same-site' })), true)
+await check('a same-site request without Origin is refused', async () => {
+  // `same-site` is another origin on the same site — a page on a different port
+  // of this host. It is not this listener's own document, so the absence of an
+  // `Origin` must not be read as permission.
+  assert.equal(trust()(request({ 'sec-fetch-site': 'same-site' })), false)
+})
+
+await check('a typed navigation is admitted', async () => {
+  // `none` is the user opening the URL directly, with no cross-site initiator.
+  assert.equal(trust()(request({ 'sec-fetch-site': 'none' })), true)
 })
 
 await check('a cross-site request is refused', async () => {

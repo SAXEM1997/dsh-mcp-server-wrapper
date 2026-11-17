@@ -3,6 +3,16 @@
 Notable changes to `dsh-mcp-btwy`. Older releases are listed on
 [GitHub Releases](https://github.com/baitouwuya/dsh-mcp-server/releases).
 
+## [2.0.3] - 2026-11-17
+
+### Security
+
+- **A `same-site` request without `Origin` is now refused.** The 2.0.2 fix for the settings page
+  treated *any* browser request without `Origin` as same-origin, which also admitted `same-site` —
+  another origin on the same site, e.g. a page on a different port of this host. The fallback now
+  accepts only `same-origin` (this listener's own document) and `none` (a typed navigation), and
+  refuses everything else. Reported upstream as the same change in SAXEM1997/dsh-mcp-server#8.
+
 ## [2.0.2] - 2026-11-13
 
 ### Fixed
