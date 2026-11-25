@@ -1,10 +1,14 @@
-# DSH MCP Server（dsh-mcp-btwy）
+# DSH MCP Server Wrapper（dsh-mcp-server-wrapper）
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![CI](https://github.com/baitouwuya/dsh-mcp-server/actions/workflows/ci.yml/badge.svg)](https://github.com/baitouwuya/dsh-mcp-server/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/dsh-mcp-btwy.svg)](https://www.npmjs.com/package/dsh-mcp-btwy)
 
 **简体中文** · [English](README.en.md)
+
+> **来源说明**：本仓库是 [`baitouwuya/dsh-mcp-server`](https://github.com/baitouwuya/dsh-mcp-server) 的
+> fork（上游 `dsh-mcp-btwy`）。分叉点在 v1.2.4（2026-11-13），从本仓库的 3.0.0 起版本号独立维护，
+> 与上游不再同步计数。上游已合并我们提交的 raw-log 读取模式、`maxChars:0` 修复与设置页来源白名单；
+> 本 fork 另有文件传输、按工作区限定工具、同源 GET 鉴权修复等上游未合入的部分。上游仍在持续开发，
+> 两边互不影响。历史文档（`CHANGELOG.md`、`docs/design/`）保留分叉前的记录，不作改写。
 
 一个 DeepSeek Harness（DSH）插件：从正在运行的 Harness 宿主发布一个 **Model Context Protocol（MCP）**
 服务，让别的 agent harness——Claude Code、Cursor、Codex、另一个 DSH、任何 MCP 客户端——可以直接调用
@@ -55,17 +59,17 @@ DSH：创建会话、推进回合、等待结果、读取对话记录、取消�
 
 ## 快速开始
 
-1. **安装到 DSH 配置档案**（npm 包 `dsh-mcp-btwy`，零依赖）：
+1. **安装到 DSH 配置档案**（从本仓库直装，零依赖；不从 npm 发布）：
 
    ```bash
-   # 在 Plugins 页面点 Add plugin，把包名粘进输入框：
-   dsh-mcp-btwy
+   # 在 Plugins 页面点 Add plugin，把仓库地址粘进输入框：
+   github:SAXEM1997/dsh-mcp-server-wrapper
    # 或者命令行（profile 名以你的安装为准，桌面版是 desktop）：
-   dsh plugin --profile desktop add dsh-mcp-btwy
+   dsh plugin --profile desktop add github:SAXEM1997/dsh-mcp-server-wrapper
    ```
 
-   从源码安装（开发或离线）同样可行：`git clone` 后在 Add plugin 里粘仓库路径，或
-   `plugin_manager install_bundle --target /path/to/dsh-mcp-server`。
+   要钉版本就在地址后加 `#<commit>`。从源码安装（开发或离线）同样可行：`git clone` 后在 Add plugin 里
+   粘仓库路径，或 `plugin_manager install_bundle --target /path/to/dsh-mcp-server-wrapper`。
 
 2. **读取插件发布的连接信息**（文件权限 0600）：
 

@@ -1,7 +1,31 @@
 # Changelog
 
-Notable changes to `dsh-mcp-btwy`. Older releases are listed on
-[GitHub Releases](https://github.com/baitouwuya/dsh-mcp-server/releases).
+Notable changes to `dsh-mcp-server-wrapper`. Releases up to 2.0.3 tracked upstream `dsh-mcp-btwy`
+([upstream releases](https://github.com/baitouwuya/dsh-mcp-server/releases)); from 3.0.0 the
+version number is this fork's own and no longer advances with upstream's.
+
+## [3.0.0] - 2026-11-25
+
+This fork is now its own plugin rather than a patched copy of upstream's package.
+
+### Changed
+
+- **Renamed to `dsh-mcp-server-wrapper`.** The package name, the loader module id, the bundle row name
+  and the settings-page title all carry the fork's own name. The `dsh-work-sync` service moves with it,
+  to `dsh-mcp-server-wrapper/work-sync`.
+- **Version numbering is independent.** 3.0.0 marks the split, not an upstream release: the fork point
+  is upstream v1.2.4, and upstream's `1.2.x` releases no longer imply anything about this package.
+- **Install from the repository, not npm.** This fork is not published to npm, so the docs and the
+  package metadata point at `github:SAXEM1997/dsh-mcp-server-wrapper`.
+
+### Unchanged on purpose
+
+- The bundle row id stays `dsh-mcp-server`, so an existing profile's configuration block stays attached
+  and no migration is needed.
+- The MCP `initialize` server name stays `dsh-mcp-server`: it is the identity clients negotiate with,
+  and renaming it would break every client that keys on it.
+- `CHANGELOG.md` entries before 3.0.0 and the documents under `docs/design/` keep their original
+  wording, including the old package name.
 
 ## [2.0.3] - 2026-11-17
 

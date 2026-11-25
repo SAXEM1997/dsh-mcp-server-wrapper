@@ -447,7 +447,7 @@ export function makeServices() {
   const configEditor = {
     entries: () => [
       { options: { id: 'ui-conversation', name: '@deepseek-ai/dsh-client-ui-conversation', config: { busyEnter: 'steer' } } },
-      { options: { id: 'dsh-mcp-server', name: 'dsh-mcp-btwy' } },
+      { options: { id: 'dsh-mcp-server', name: 'dsh-mcp-server-wrapper' } },
     ],
     async edit(entry, change) {
       const next = change({}, {})
@@ -458,8 +458,8 @@ export function makeServices() {
 
   /** The browser module registry: what serves this bundle's client half. */
   const clientModules = {
-    clientPath: (id) => (id === 'dsh-mcp-btwy' ? '/tmp/pkg/lib/client.js' : undefined),
-    graph: () => ({ entries: [{ id: 'dsh-mcp-btwy' }, { id: '@deepseek-ai/dsh-client-ui-theme' }] }),
+    clientPath: (id) => (id === 'dsh-mcp-server-wrapper' ? '/tmp/pkg/lib/client.js' : undefined),
+    graph: () => ({ entries: [{ id: 'dsh-mcp-server-wrapper' }, { id: '@deepseek-ai/dsh-client-ui-theme' }] }),
   }
 
   /** Per-agent tool registrations, the way an agent's own scope holds them. */

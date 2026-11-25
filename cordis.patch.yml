@@ -4,8 +4,8 @@
 # bundle registers task-start progress sync alongside the endpoint, which makes
 # every session that begins a task ask up to three peer sessions "what are you
 # working on". The engine and its service are still shipped (other rows may
-# mount `dsh-mcp-btwy/work-sync` explicitly), they are simply not mounted here.
+# mount `dsh-mcp-server-wrapper/work-sync` explicitly), they are simply not mounted here.
 - insert:
     - id: dsh-mcp-server
-      name: 'dsh-mcp-btwy'
+      name: 'dsh-mcp-server-wrapper'
       config: {}

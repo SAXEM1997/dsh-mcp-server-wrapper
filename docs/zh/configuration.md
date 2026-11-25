@@ -90,7 +90,7 @@
 ```yaml
 - insert:
     - id: dsh-mcp-server
-      name: 'dsh-mcp-btwy'
+      name: 'dsh-mcp-server-wrapper'
       config:
         token: !!js process.env.DSH_MCP_TOKEN
         defaultCwd: /Users/me/work
