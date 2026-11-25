@@ -1,6 +1,6 @@
 # DSH 本地工具
 
-> 属于 [DSH MCP Server](../../README.md) · [文档索引](../README.md)
+> 属于 [DSH MCP Server Wrapper](../../README.md) · [文档索引](../README.md)
 
 同一张工具表，也可以在 Harness 内部调用——但对调用方能做什么设有上限。
 

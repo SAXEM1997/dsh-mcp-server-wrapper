@@ -1,6 +1,6 @@
 # 配置
 
-> 属于 [DSH MCP Server](../../README.md) · [文档索引](../README.md)
+> 属于 [DSH MCP Server Wrapper](../../README.md) · [文档索引](../README.md)
 
 插件页上的每个开关，以及插件包行接受的每个字段。
 

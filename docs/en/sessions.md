@@ -1,6 +1,6 @@
 # Sessions and delivery
 
-> Part of [DSH MCP Server](../../README.en.md) · [Docs index](../README.md)
+> Part of [DSH MCP Server Wrapper](../../README.en.md) · [Docs index](../README.md)
 
 How a caller is identified, how sessions are owned, how a turn is waited on, and where a session appears.
 

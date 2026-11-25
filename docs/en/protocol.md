@@ -1,6 +1,6 @@
 # Protocol support
 
-> Part of [DSH MCP Server](../../README.en.md) · [Docs index](../README.md)
+> Part of [DSH MCP Server Wrapper](../../README.en.md) · [Docs index](../README.md)
 
 What this endpoint answers on the wire, and what it deliberately does not. The gateway is
 `lib/protocol.js`; the HTTP binding is `lib/http-route.js`. The bundled stdio bridge

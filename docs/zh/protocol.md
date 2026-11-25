@@ -1,6 +1,6 @@
 # 协议支持
 
-> 属于 [DSH MCP Server](../../README.md) · [文档索引](../README.md)
+> 属于 [DSH MCP Server Wrapper](../../README.md) · [文档索引](../README.md)
 
 这个端点在线上协议里回答什么，以及它刻意不做什么。网关实现在 `lib/protocol.js`，HTTP 绑定在
 `lib/http-route.js`。自带的 stdio 桥（`bin/dsh-mcp-stdio.mjs`）把同样的消息转发到同一个 HTTP

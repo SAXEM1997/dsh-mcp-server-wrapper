@@ -1,6 +1,6 @@
 # Internals
 
-> Part of [DSH MCP Server](../../README.en.md) · [Docs index](../README.md)
+> Part of [DSH MCP Server Wrapper](../../README.en.md) · [Docs index](../README.md)
 
 How the pieces fit, what compatibility means here, and what remains a limitation.
 
@@ -119,26 +119,26 @@ and the stdio bridge.
 
 ## Releasing
 
-The version lives in three places that move together: `package.json`, `VERSION` in `index.js`, and
-the Status section of both READMEs — plus one `CHANGELOG.md` entry. When the number of tests or
-documents changes, the counts in `docs/*/internals.md` and the READMEs follow. Only continue once
-`npm run verify` is green.
+The version lives in `package.json` and the Status section of both READMEs (`VERSION` in `index.js`
+reads it from `package.json`, so it is not a second copy) — plus one `CHANGELOG.md` entry. When the
+number of tests or documents changes, the counts in `docs/*/internals.md` and the READMEs follow.
+Only continue once `npm run verify` is green.
 
-Then push a tag and let the workflow publish:
+This fork is **not published to npm**; it is installed from the repository, so a release is a tag plus
+a GitHub release:
 
 ```bash
-git tag v0.23.0
-git push origin v0.23.0   # triggers .github/workflows/publish.yml
+git tag -a v3.0.0 -m "v3.0.0"
+git push origin v3.0.0
 ```
 
-The workflow checks the tag against `package.json`, runs the tests and the documentation guard, then
-publishes with npm provenance. The first release uses the `NPM_TOKEN` secret; after that, configure
-this repository and `publish.yml` as a trusted publisher on npm, and the workflow switches to OIDC,
-with no token stored. A manual release is the same as `npm publish --provenance --access public`.
+CI (`.github/workflows/ci.yml`) runs the tests on `main` and on pull requests. The repository has no
+publishing workflow, so pushing a tag uploads nothing. Installs pin a tag with
+`github:SAXEM1997/dsh-mcp-server-wrapper#v3.0.0`.
 
-The package name is also the row name: the two `name` fields in `cordis.patch.yml` must equal
-`package.json`'s `name`, which makes a rename a breaking change — an existing profile's dependency
-has to move with it, or the rows resolve no module.
+The package name is also the row name: a row's `name` in `cordis.patch.yml` must equal
+`package.json`'s `name`, which makes a rename a breaking change — an existing profile's dependency key
+and `bundles` list have to move with it, or the rows resolve no module.
 
 ## Notes and limitations
 

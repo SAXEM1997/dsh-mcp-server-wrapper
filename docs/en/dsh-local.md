@@ -1,6 +1,6 @@
 # DSH-local tools
 
-> Part of [DSH MCP Server](../../README.en.md) · [Docs index](../README.md)
+> Part of [DSH MCP Server Wrapper](../../README.en.md) · [Docs index](../README.md)
 
 The same table, callable from inside the Harness — with a ceiling on what a caller may do.
 

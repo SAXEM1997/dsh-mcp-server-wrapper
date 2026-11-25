@@ -1,6 +1,6 @@
 # 必须回复的问题
 
-> 属于 [DSH MCP Server](../../README.md) · [文档索引](../README.md)
+> 属于 [DSH MCP Server Wrapper](../../README.md) · [文档索引](../README.md)
 
 向一个会话提问，它必须在回合结束前回答。
 

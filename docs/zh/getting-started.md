@@ -1,6 +1,6 @@
 # 快速开始
 
-> 属于 [DSH MCP Server](../../README.md) · [文档索引](../README.md)
+> 属于 [DSH MCP Server Wrapper](../../README.md) · [文档索引](../README.md)
 
 安装插件包，查看连接信息，然后把客户端指向端点。
 
@@ -39,12 +39,23 @@ plugin_manager install_bundle --target /path/to/dsh-mcp-server-wrapper
 
 没有挂载的配置档案照常提供 MCP 服务，并报告 `sync.present: false`。
 
+### 从 2.x 升级（包名变了）
+
+2.x 的包名是上游的 `dsh-mcp-btwy`，3.0.0 起是本 fork 自己的 `dsh-mcp-server-wrapper`。升级要换三处：
+
+1. 依赖：删掉旧键再加新包 —— `pnpm remove dsh-mcp-btwy`，然后 `pnpm add github:SAXEM1997/dsh-mcp-server-wrapper#v3.0.0`；
+2. 配置档案 `package.json` 的 `dsh.bundles` 列表：把 `dsh-mcp-btwy` 换成 `dsh-mcp-server-wrapper`；
+3. 若 `cordis.patch.yml` 里那一行**重述了 `name`**，同步改成新名 —— 重述的 `name` 是断言，名字对不上时
+   加载器会跳过整个 patch（stderr 有 warning），那一行的 token 与配置就跟着丢了。
+
+改完重启 DSH。行的 `id`（`dsh-mcp-server`）不用动。
+
 ### 自检插件包（可选）
 
 `selfcheck/` 是第二个很小的插件包（`@local/dsh-mcp-selfcheck`），它把 DSH **自身**的 MCP 客户端注册到这个服务器上，使已发布的端点持续得到实际调用，其工具会以 `mcp__dsh__*` 的形式出现在 DSH 内部。它纯粹用于验证——如果你不希望每个会话里都有一个自环，可以禁用它或跳过安装：
 
 ```bash
-plugin_manager install_bundle --target /path/to/dsh-mcp-server/selfcheck
+plugin_manager install_bundle --target /path/to/dsh-mcp-server-wrapper/selfcheck
 ```
 
 仓库中提交的 `cordis.patch.yml` **不含任何明文令牌**（这是一个公开仓库）：请在 Harness 环境中设置 `DSH_MCP_TOKEN`，或者在你自己私有的配置档案中，用服务器所配置的令牌修改 `mcp-dsh-selfcheck` 行。
@@ -105,7 +116,7 @@ Authorization: Bearer <token>
   "mcpServers": {
     "dsh": {
       "command": "node",
-      "args": ["<path-to-dsh-mcp-server>/bin/dsh-mcp-stdio.mjs"]
+      "args": ["<path-to-dsh-mcp-server-wrapper>/bin/dsh-mcp-stdio.mjs"]
     }
   }
 }
@@ -130,7 +141,7 @@ Authorization: Bearer <token>
 [mcp_servers.dsh]
 type = "stdio"
 command = "/absolute/path/to/node"
-args = ["<path-to-dsh-mcp-server>/bin/dsh-mcp-stdio.mjs"]
+args = ["<path-to-dsh-mcp-server-wrapper>/bin/dsh-mcp-stdio.mjs"]
 startup_timeout_sec = 60
 ```
 
