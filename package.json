@@ -1,6 +1,6 @@
 {
-  "name": "dsh-mcp-btwy",
-  "version": "2.0.3",
+  "name": "dsh-mcp-server-wrapper",
+  "version": "3.0.0",
   "type": "module",
   "description": "Expose DeepSeek Harness sessions, agents, and tools to any other agent harness over the Model Context Protocol.",
   "license": "MIT",
@@ -19,15 +19,21 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/baitouwuya/dsh-mcp-server.git"
+    "url": "git+https://github.com/SAXEM1997/dsh-mcp-server-wrapper.git"
   },
-  "homepage": "https://github.com/baitouwuya/dsh-mcp-server#readme",
+  "homepage": "https://github.com/SAXEM1997/dsh-mcp-server-wrapper#readme",
   "bugs": {
-    "url": "https://github.com/baitouwuya/dsh-mcp-server/issues"
+    "url": "https://github.com/SAXEM1997/dsh-mcp-server-wrapper/issues"
   },
   "author": "baitouwuya",
+  "contributors": [
+    {
+      "name": "SAXEM1997",
+      "url": "https://github.com/SAXEM1997"
+    }
+  ],
   "meta": {
-    "title": "DSH MCP Server",
+    "title": "DSH MCP Server Wrapper",
     "description": "Serves a Model Context Protocol (MCP) endpoint from the running DeepSeek Harness host, so other agent harnesses can start DSH sessions, continue them, and read their transcripts."
   },
   "exports": {

@@ -6,34 +6,34 @@
 
 ## 安装到配置档案
 
-已发布到 npm，包名 `dsh-mcp-btwy`，零运行时依赖：
+本 fork 不从 npm 发布，直接从仓库安装，零运行时依赖：
 
 ```bash
-# 在 Plugins 页面点 Add plugin 并粘贴包名：
-dsh-mcp-btwy
+# 在 Plugins 页面点 Add plugin 并粘贴仓库地址：
+github:SAXEM1997/dsh-mcp-server-wrapper
 # 或命令行（profile 名以你的安装为准，桌面版是 desktop）：
-dsh plugin --profile desktop add dsh-mcp-btwy
+dsh plugin --profile desktop add github:SAXEM1997/dsh-mcp-server-wrapper
 ```
 
-要钉版本就写 `dsh-mcp-btwy@0.23.0`；要升级就再执行一次并重启 DSH。
+要钉版本就在仓库地址后加 `#<commit>`；要升级就再执行一次并重启 DSH。
 
 **从源码安装**（开发或离线）同样可行：
 
 ```bash
-git clone https://github.com/baitouwuya/dsh-mcp-server.git
+git clone https://github.com/SAXEM1997/dsh-mcp-server-wrapper.git
 # then, from the Harness UI / plugin_manager:
-plugin_manager install_bundle --target /path/to/dsh-mcp-server
+plugin_manager install_bundle --target /path/to/dsh-mcp-server-wrapper
 ```
 
 或者等价地，使用 `action: install_bundle`，并把插件包的绝对目录作为 `target`。源码安装时包名仍然是
-`dsh-mcp-btwy`——npm 名和仓库目录无关，patch 里的行名跟着包名走。
+`dsh-mcp-server-wrapper`——包名和仓库目录无关，patch 里的行名跟着包名走。
 
-本 fork 的 patch 只插入**一行**：`dsh-mcp-server`（端点）。上游还会一并插入 `dsh-work-sync`（任务启动进度同步，见[进度同步](work-sync.md)）——这里不默认挂载，因为它会让每个开始任务的会话向最多 3 个同伴会话发一次询问。引擎与 `dsh-mcp-btwy/work-sync` 服务仍随包发布，需要时在配置档案里显式挂回：
+本 fork 的 patch 只插入**一行**：`dsh-mcp-server`（端点）。上游还会一并插入 `dsh-work-sync`（任务启动进度同步，见[进度同步](work-sync.md)）——这里不默认挂载，因为它会让每个开始任务的会话向最多 3 个同伴会话发一次询问。引擎与 `dsh-mcp-server-wrapper/work-sync` 服务仍随包发布，需要时在配置档案里显式挂回：
 
 ```yaml
 - insert:
     - id: dsh-work-sync
-      name: 'dsh-mcp-btwy/work-sync'
+      name: 'dsh-mcp-server-wrapper/work-sync'
       config: {}
 ```
 

@@ -2,7 +2,7 @@ name: Publish
 
 # Publishes the package when a version tag is pushed. Trusted publishing (OIDC)
 # is the intended path: configure this repository and workflow as a trusted
-# publisher for dsh-mcp-btwy once on npmjs.com, then no token is stored here.
+# publisher for dsh-mcp-server-wrapper once on npmjs.com, then no token is stored here.
 # Before that configuration exists, add an NPM_TOKEN repository secret and the
 # same workflow publishes with it. A version that is already on the registry is
 # skipped, so tagging after a manual release stays green.
@@ -49,9 +49,9 @@ jobs:
         id: check
         run: |
           version="$(node -p "require('./package.json').version")"
-          if npm view "dsh-mcp-btwy@$version" version >/dev/null 2>&1; then
+          if npm view "dsh-mcp-server-wrapper@$version" version >/dev/null 2>&1; then
             echo "skip=true" >> "$GITHUB_OUTPUT"
-            echo "dsh-mcp-btwy@$version is already published; nothing to do"
+            echo "dsh-mcp-server-wrapper@$version is already published; nothing to do"
           else
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi

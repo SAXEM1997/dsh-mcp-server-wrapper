@@ -1,10 +1,16 @@
-# DSH MCP Server (dsh-mcp-btwy)
+# DSH MCP Server Wrapper (dsh-mcp-server-wrapper)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![CI](https://github.com/baitouwuya/dsh-mcp-server/actions/workflows/ci.yml/badge.svg)](https://github.com/baitouwuya/dsh-mcp-server/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/dsh-mcp-btwy.svg)](https://www.npmjs.com/package/dsh-mcp-btwy)
 
 **English** · [简体中文](README.md)
+
+> **Where this comes from**: this repository is a fork of
+> [`baitouwuya/dsh-mcp-server`](https://github.com/baitouwuya/dsh-mcp-server) (upstream `dsh-mcp-btwy`).
+> The fork point is v1.2.4 (2026-11-13); from 3.0.0 this repository's version number stands on its own and
+> no longer tracks upstream's. Upstream has merged our raw-log read mode, the `maxChars:0` fix and the
+> config-page origin allowlist; this fork additionally carries file transport, per-workspace tool scoping
+> and the same-origin GET trust fix, none of which upstream has taken. Upstream keeps moving; the two
+> diverge deliberately. Historical records (`CHANGELOG.md`, `docs/design/`) keep their pre-fork wording.
 
 A DeepSeek Harness (DSH) plugin that publishes a **Model Context Protocol (MCP)** server from the running
 Harness host, so other agent harnesses — Claude Code, Cursor, Codex, another DSH, any MCP client — can call
@@ -57,17 +63,19 @@ other harness ──MCP (Streamable HTTP or stdio)──> DSH MCP Server ──>
 
 ## Quick start
 
-1. **Install the bundle into a DSH profile** (npm package `dsh-mcp-btwy`, zero dependencies):
+1. **Install the bundle into a DSH profile** (straight from this repository, zero dependencies; not
+   published to npm):
 
    ```bash
-   # Plugins page -> Add plugin, then paste the package name:
-   dsh-mcp-btwy
+   # Plugins page -> Add plugin, then paste the repository:
+   github:SAXEM1997/dsh-mcp-server-wrapper
    # or from the command line (the profile name is the one you use; the desktop app's is desktop):
-   dsh plugin --profile desktop add dsh-mcp-btwy
+   dsh plugin --profile desktop add github:SAXEM1997/dsh-mcp-server-wrapper
    ```
 
-   A source install (development or offline) works too: `git clone`, then paste the checkout path in
-   Add plugin, or `plugin_manager install_bundle --target /path/to/dsh-mcp-server`.
+   Pin a version by appending `#<commit>`. A source install (development or offline) works too:
+   `git clone`, then paste the checkout path in Add plugin, or
+   `plugin_manager install_bundle --target /path/to/dsh-mcp-server-wrapper`.
 
 2. **Read the connection details** the plugin publishes at mode 0600:
 
