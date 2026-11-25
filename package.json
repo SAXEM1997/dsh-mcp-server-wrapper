@@ -1,6 +1,6 @@
 {
   "name": "dsh-mcp-server-wrapper",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "type": "module",
   "description": "Expose DeepSeek Harness sessions, agents, and tools to any other agent harness over the Model Context Protocol.",
   "license": "MIT",

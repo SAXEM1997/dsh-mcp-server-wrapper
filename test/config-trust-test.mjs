@@ -54,6 +54,21 @@ await check('a same-site request without Origin is refused', async () => {
   assert.equal(trust()(request({ 'sec-fetch-site': 'same-site' })), false)
 })
 
+await check('a same-site request is refused even when the Host connection would admit it', async () => {
+  // The rule must not depend on whether `connection` happens to be resolvable at
+  // the moment the request arrives. A live connection answers for its own
+  // browsers and is more permissive about a missing `Origin`, so deferring to it
+  // made the same-site case flip between boots: 403 when the service was absent,
+  // 200 when it was present. A page on another port of this host is still not
+  // this listener's own document.
+  const accepting = trust({ getConnection: () => ({ requestRejection: () => undefined }) })
+  assert.equal(accepting(request({ 'sec-fetch-site': 'same-site' })), false,
+    'an accepting connection must not admit a same-site request with no Origin')
+  const sameOrigin = trust({ getConnection: () => ({ requestRejection: () => undefined }) })
+  assert.equal(sameOrigin(request({ 'sec-fetch-site': 'same-origin' })), true,
+    'the same-origin GET the settings page makes is still admitted')
+})
+
 await check('a typed navigation is admitted', async () => {
   // `none` is the user opening the URL directly, with no cross-site initiator.
   assert.equal(trust()(request({ 'sec-fetch-site': 'none' })), true)

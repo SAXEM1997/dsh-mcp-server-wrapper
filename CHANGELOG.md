@@ -4,6 +4,17 @@ Notable changes to `dsh-mcp-server-wrapper`. Releases up to 2.0.3 tracked upstre
 ([upstream releases](https://github.com/baitouwuya/dsh-mcp-server/releases)); from 3.0.0 the
 version number is this fork's own and no longer advances with upstream's.
 
+## [3.0.1] - 2026-11-25
+
+### Fixed
+
+- **The `same-site` refusal no longer depends on whether the Host connection is resolvable.**
+  `configTrust` asked the `connection` service first and only fell back to the header fence when it was
+  unavailable. A live connection answers for its own browsers and is more permissive about a missing
+  `Origin`, so the same request scored 403 on one boot and 200 on another — observed in production right
+  after the 3.0.0 install, where a hot reload made `connection` resolvable and a page on another port of
+  the same host was admitted again. `same-site` without an `Origin` is now refused before that branch.
+
 ## [3.0.0] - 2026-11-25
 
 This fork is now its own plugin rather than a patched copy of upstream's package.
