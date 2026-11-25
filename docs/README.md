@@ -11,7 +11,7 @@ README 只说明能做什么，具体细节按主题拆到下面的文件；两�
 | Document | What is inside |
 |---|---|
 | [Getting started](en/getting-started.md) | Install, the endpoint file and token, HTTP/stdio/DSH-as-client configs, the self-check bundle. |
-| [Tools and resources](en/tools.md) | All 26 tools, the three resources, progressive reads, pending user decisions. |
+| [Tools and resources](en/tools.md) | All 28 tools, the two resources and one resource template, progressive reads, pending user decisions. |
 | [Protocol support](en/protocol.md) | Supported MCP revisions, methods, capabilities, notifications, error codes, authentication, session headers, and unsupported features. |
 | [Sessions and delivery](en/sessions.md) | Caller identity and ownership, waiting, sidebar grouping, queue/steer, opening the GUI. |
 | [DSH-local tools](en/dsh-local.md) | The in-Harness surface, the lazy front door, and the authority ceiling. |

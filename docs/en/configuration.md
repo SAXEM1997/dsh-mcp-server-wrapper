@@ -1,6 +1,6 @@
 # Configuration
 
-> Part of [DSH MCP Server](../../README.en.md) · [Docs index](../README.md)
+> Part of [DSH MCP Server Wrapper](../../README.en.md) · [Docs index](../README.md)
 
 Every switch on the Plugins page, and every field the bundle row accepts.
 

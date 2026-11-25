@@ -1,6 +1,6 @@
 # 会话与投递
 
-> 属于 [DSH MCP Server](../../README.md) · [文档索引](../README.md)
+> 属于 [DSH MCP Server Wrapper](../../README.md) · [文档索引](../README.md)
 
 调用方如何被识别、会话如何归属、如何等待一个回合，以及会话会出现在哪里。
 

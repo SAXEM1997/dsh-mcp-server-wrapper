@@ -1,6 +1,6 @@
 # Task-start progress sync
 
-> Part of [DSH MCP Server](../../README.en.md) · [Docs index](../README.md)
+> Part of [DSH MCP Server Wrapper](../../README.en.md) · [Docs index](../README.md)
 
 Ask peers working in the same workspace what they are doing before editing the same tree.
 
@@ -8,9 +8,11 @@ When other agents are working in the **same workspace**, a separate model call e
 task needs coordination and asks only the selected peers about their work. The evaluation runs alongside
 the main turn without blocking it.
 
-This is its own bundle row. The bundle patch inserts two rows — `dsh-mcp-server` and `dsh-work-sync` — so the
-endpoint never mounts the engine itself: it reads `ctx.get('workSync')` for the settings page and
-`dsh_status`, and saves the one switch through the profile editor on that row.
+This is its own bundle row. This fork's patch inserts **one row** (`dsh-mcp-server`) and leaves the
+engine unmounted by default — it would make every session that begins a task ask up to three peers. Mount
+`dsh-mcp-server-wrapper/work-sync` explicitly as shown in [getting started](getting-started.md) when you
+want it. The endpoint never runs the engine itself: it reads `ctx.get('workSync')` for the settings page
+and `dsh_status`, and saves the one switch through the profile editor on that row.
 
 - **One question per top-level agent.** The asker resolves each peer's top-level (root) session and asks
   only that one; a root answers on behalf of its whole subtree. A sub-agent never questions peers — it asks

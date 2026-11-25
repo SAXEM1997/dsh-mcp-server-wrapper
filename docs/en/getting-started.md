@@ -1,6 +1,6 @@
 # Getting started
 
-> Part of [DSH MCP Server](../../README.en.md) · [Docs index](../README.md)
+> Part of [DSH MCP Server Wrapper](../../README.en.md) · [Docs index](../README.md)
 
 Install the bundle, read the connection details, and point a client at the endpoint.
 
@@ -44,6 +44,20 @@ because it makes every session that begins a task ask up to three peer sessions.
 
 A profile without that row still serves MCP and reports `sync.present: false`.
 
+### Upgrading from 2.x (the package was renamed)
+
+2.x used upstream's package name, `dsh-mcp-btwy`; from 3.0.0 it is this fork's own,
+`dsh-mcp-server-wrapper`. Three things move:
+
+1. **The dependency**: remove the old key, then add the new package —
+   `pnpm remove dsh-mcp-btwy`, then `pnpm add github:SAXEM1997/dsh-mcp-server-wrapper#v3.0.0`;
+2. **The profile's `dsh.bundles` list**: replace `dsh-mcp-btwy` with `dsh-mcp-server-wrapper`;
+3. **Any `name` restated on that row in `cordis.patch.yml`**: update it too — a restated `name` is an
+   assertion, and a stale one makes the loader skip the whole patch (with a stderr warning), taking the
+   row's token and config with it.
+
+Restart DSH afterwards. The row `id` (`dsh-mcp-server`) does not change.
+
 ### Self-check bundle (optional)
 
 `selfcheck/` is a second, tiny bundle (`@local/dsh-mcp-selfcheck`) that registers DSH's **own** MCP
@@ -52,7 +66,7 @@ inside DSH as `mcp__dsh__*`. It is pure verification — disable or skip it if y
 self-loop in every session:
 
 ```bash
-plugin_manager install_bundle --target /path/to/dsh-mcp-server/selfcheck
+plugin_manager install_bundle --target /path/to/dsh-mcp-server-wrapper/selfcheck
 ```
 
 The committed `cordis.patch.yml` carries **no literal token** (this is a public repository): set
@@ -124,7 +138,7 @@ Point the client at the endpoint with the bearer token:
   "mcpServers": {
     "dsh": {
       "command": "node",
-      "args": ["<path-to-dsh-mcp-server>/bin/dsh-mcp-stdio.mjs"]
+      "args": ["<path-to-dsh-mcp-server-wrapper>/bin/dsh-mcp-stdio.mjs"]
     }
   }
 }
@@ -155,7 +169,7 @@ on the bridge's `~/.dsh` discovery (both verified with only `HOME` and `PATH` se
 [mcp_servers.dsh]
 type = "stdio"
 command = "/absolute/path/to/node"
-args = ["<path-to-dsh-mcp-server>/bin/dsh-mcp-stdio.mjs"]
+args = ["<path-to-dsh-mcp-server-wrapper>/bin/dsh-mcp-stdio.mjs"]
 startup_timeout_sec = 60
 ```
 

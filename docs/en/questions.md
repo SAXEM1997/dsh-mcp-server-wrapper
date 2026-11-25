@@ -1,6 +1,6 @@
 # Must-reply questions
 
-> Part of [DSH MCP Server](../../README.en.md) · [Docs index](../README.md)
+> Part of [DSH MCP Server Wrapper](../../README.en.md) · [Docs index](../README.md)
 
 Ask a session something it must answer before its turn can end.
 

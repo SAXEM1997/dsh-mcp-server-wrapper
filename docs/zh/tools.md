@@ -1,6 +1,6 @@
 # 工具与资源
 
-> 属于 [DSH MCP Server](../../README.md) · [文档索引](../README.md)
+> 属于 [DSH MCP Server Wrapper](../../README.md) · [文档索引](../README.md)
 
 28 个 MCP 工具、2 个资源和 1 个资源模板——每一项的设计都保证：任何一次调用都不会把整个会话一次性倾倒出来。
 

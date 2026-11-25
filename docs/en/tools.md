@@ -1,6 +1,6 @@
 # Tools and resources
 
-> Part of [DSH MCP Server](../../README.en.md) · [Docs index](../README.md)
+> Part of [DSH MCP Server Wrapper](../../README.en.md) · [Docs index](../README.md)
 
 Twenty-six MCP tools, two resources and one resource template — each shaped so that no call dumps a session.
 

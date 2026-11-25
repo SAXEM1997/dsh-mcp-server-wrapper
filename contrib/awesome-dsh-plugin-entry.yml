@@ -1,10 +1,10 @@
 # Submission for the community catalog (awesome-dsh-plugin) that also serves as
 # a DSH plugin market index. Copy this file into that repository as
-#   data/plugins/baitouwuya__dsh-mcp-server.yml
+#   data/plugins/SAXEM1997__dsh-mcp-server-wrapper.yml
 # and open one pull request; the two generated READMEs are rebuilt after merge.
 # It is kept here so the listing text tracks the code it describes.
-url: https://github.com/baitouwuya/dsh-mcp-server
-name: baitouwuya/dsh-mcp-server
+url: https://github.com/SAXEM1997/dsh-mcp-server-wrapper
+name: SAXEM1997/dsh-mcp-server-wrapper
 category: tools
 description:
   en: 'Publishes the running DSH host as a Model Context Protocol endpoint, so other harnesses (Claude Code, Cursor, Codex, another DSH) can start and continue sessions, read transcripts, wait on or cancel turns, and answer pending approvals, with per-caller attribution and owner-scoped sessions.'

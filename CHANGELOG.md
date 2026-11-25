@@ -18,10 +18,22 @@ This fork is now its own plugin rather than a patched copy of upstream's package
 - **Install from the repository, not npm.** This fork is not published to npm, so the docs and the
   package metadata point at `github:SAXEM1997/dsh-mcp-server-wrapper`.
 
+### Upgrading from 2.x
+
+The package name changed, so a profile that installed `dsh-mcp-btwy` has to swap it:
+
+1. Remove the old dependency and add the new one (`pnpm remove dsh-mcp-btwy`, then
+   `pnpm add github:SAXEM1997/dsh-mcp-server-wrapper#v3.0.0`).
+2. Replace `dsh-mcp-btwy` with `dsh-mcp-server-wrapper` in the profile's `dsh.bundles` list.
+3. If the profile's `cordis.patch.yml` restates `name:` on the `dsh-mcp-server` row, update it as well:
+   a restated name is an assertion (`dsh-app-boot`'s `applyPatches`), and a stale one makes the loader
+   skip that patch with a warning — which drops the row's token and config.
+4. Restart DSH.
+
 ### Unchanged on purpose
 
-- The bundle row id stays `dsh-mcp-server`, so an existing profile's configuration block stays attached
-  and no migration is needed.
+- The bundle row id stays `dsh-mcp-server`, so the configuration block's identity and position do not
+  move; only the package it resolves to changes.
 - The MCP `initialize` server name stays `dsh-mcp-server`: it is the identity clients negotiate with,
   and renaming it would break every client that keys on it.
 - `CHANGELOG.md` entries before 3.0.0 and the documents under `docs/design/` keep their original

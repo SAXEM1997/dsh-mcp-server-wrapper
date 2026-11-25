@@ -1,6 +1,6 @@
 # 内部实现
 
-> 属于 [DSH MCP Server](../../README.md) · [文档索引](../README.md)
+> 属于 [DSH MCP Server Wrapper](../../README.md) · [文档索引](../README.md)
 
 各部分如何协同工作，这里的“兼容”指什么，以及哪些仍属于限制。
 
@@ -87,18 +87,18 @@ node test/live-e2e-test.mjs            # 46 checks over HTTP: protocol, resource
 
 ## 发布
 
-版本号出现在三处，必须一起改：`package.json`、`index.js` 的 `VERSION`、两份 README 的「状态」一节；再加一条 `CHANGELOG.md` 记录。测试或文档数量变化时，`docs/*/internals.md` 与 README 里的数字也要同步。`npm run verify` 全绿才继续。
+版本号出现在 `package.json` 与两份 README 的「状态」一节（`index.js` 的 `VERSION` 从 `package.json` 读，不另抄一份）；再加一条 `CHANGELOG.md` 记录。测试或文档数量变化时，`docs/*/internals.md` 与 README 里的数字也要同步。`npm run verify` 全绿才继续。
 
-然后推一个 tag，由工作流发布：
+本 fork **不从 npm 发布**，安装走仓库地址，所以发布就是打 tag + 在 GitHub 上写 release：
 
 ```bash
-git tag v0.23.0
-git push origin v0.23.0   # 触发 .github/workflows/publish.yml
+git tag -a v3.0.0 -m "v3.0.0"
+git push origin v3.0.0
 ```
 
-工作流先核对 tag 与 `package.json` 的版本、跑测试与文档守卫，再用 npm 的 provenance 发布。首次发布用 `NPM_TOKEN` secret；之后在 npm 上把本仓库与 `publish.yml` 配成受信发布者（trusted publisher），工作流会改走 OIDC，不再需要令牌。手工发布等价于 `npm publish --provenance --access public`。
+CI（`.github/workflows/ci.yml`）在 main 与 PR 上跑测试；仓库没有任何发布工作流，推 tag 不会触发 npm 上传。安装方用 `github:SAXEM1997/dsh-mcp-server-wrapper#v3.0.0` 钉版本。
 
-包名就是行名：`cordis.patch.yml` 两行的 `name` 必须等于 `package.json` 的 `name`，所以改包名是破坏性变更——已有配置档案的依赖必须同步替换，否则行解析不到模块。
+包名就是行名：`cordis.patch.yml` 里行的 `name` 必须等于 `package.json` 的 `name`，所以改包名是破坏性变更——已有配置档案的依赖键与 `bundles` 列表必须同步替换，否则行解析不到模块。
 
 ## 说明与限制
 
